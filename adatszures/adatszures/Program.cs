@@ -34,219 +34,157 @@ namespace adatszures
                 }
             }
 
-            FilmAdatok BekertAdatok = new FilmAdatok(AdatokBekerese(SGenre, MGenre));
+            bool valaszt = true;
+            int currentIndex = 0;
+            List<string> Opciok = new List<string>() {"Értékelés", "Típus", "Műfaj", "Hossz"};
+            List<bool> ValasztottOpciok = [false, false, false, false];
 
-            Console.WriteLine("\nSikeres adatbekérés! Nyomj meg egy gombot a folytatáshoz.");
-            Console.ReadKey();
+            Console.WriteLine("Mi alapján szeretnél szűrni? [ENTER = Kiválaszt | SPACE = BEFEJEZÉS]");
+            for (int i = 0; i < Opciok.Count(); i++)
+            {
+                if (i == currentIndex)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write("> ");
+                    Console.WriteLine(Opciok[i]);
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+
+                else
+                {
+                    if (ValasztottOpciok[i] == true)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("  " + Opciok[i]);
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    else
+                    {
+                        if (ValasztottOpciok[1] == false && i == 3)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Gray;
+                            Console.WriteLine("  " + Opciok[i]);
+                            Console.ForegroundColor = ConsoleColor.White;
+                        }
+                        else
+                        {
+                            Console.WriteLine("  " + Opciok[i]);
+                        }
+                    }
+                }
+            }
+
+            while (valaszt) 
+            {
+                ConsoleKeyInfo keyInfo = Console.ReadKey();
+                bool hibaIras = false;
+
+                if (keyInfo.Key == ConsoleKey.Spacebar) 
+                {
+                    break;
+                }
+
+                if (keyInfo.Key == ConsoleKey.DownArrow && currentIndex != 3)
+                {
+                    currentIndex++;
+                }
+
+                else if (keyInfo.Key == ConsoleKey.UpArrow && currentIndex != 0) 
+                {
+                    currentIndex--;
+                }
+
+                if (ValasztottOpciok[1] == false && currentIndex == 3)
+                {
+                    hibaIras = true;
+                }
+
+                if (keyInfo.Key == ConsoleKey.Enter) 
+                {
+                    if (ValasztottOpciok[1] == false && currentIndex == 3)
+                    {
+                        continue;
+                    }
+
+                    else 
+                    {
+                        if (currentIndex == 1 && ValasztottOpciok[1] == true)
+                        {
+                            ValasztottOpciok[1] = false;
+                            ValasztottOpciok[3] = false;
+                        }
+
+                        else 
+                        {
+                            if (ValasztottOpciok[currentIndex] == false)
+                            {
+                                ValasztottOpciok[currentIndex] = true;
+                            }
+                            else
+                            {
+                                ValasztottOpciok[currentIndex] = false;
+                            }
+                        }
+                    }
+                }
+
+                Console.Clear();
+                Console.WriteLine("Mi alapján szeretnél szűrni? [ENTER = Kiválaszt | SPACE = BEFEJEZÉS]");
+                for (int i = 0; i < Opciok.Count(); i++) 
+                {
+                    if (i == currentIndex)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write("> ");
+                        Console.WriteLine(Opciok[i]);
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+
+                    else 
+                    {
+                        if (ValasztottOpciok[i] == true)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("  " + Opciok[i]);
+                            Console.ForegroundColor = ConsoleColor.White;
+                        }
+                        else 
+                        {
+                            if (ValasztottOpciok[1] == false && i == 3)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Gray;
+                                Console.WriteLine("  " + Opciok[i]);
+                                Console.ForegroundColor = ConsoleColor.White;
+                            }
+                            else 
+                            {
+                                Console.WriteLine("  " + Opciok[i]);
+                            }
+                        }
+                    }
+                }
+                if (hibaIras) 
+                {
+                    Console.WriteLine("Ehhez az opcióhoz ki kell választanod a típust alapú szűrést is.");
+                }
+            }
+
             Console.Clear();
 
-            Console.WriteLine(BekertAdatok.rating);
-            Console.WriteLine(BekertAdatok.name);
-            Console.WriteLine(BekertAdatok.type);
-            Console.WriteLine(BekertAdatok.genre[0]);
-            Console.WriteLine(BekertAdatok.length);
-        }
+            List<string> MikAlapjan = new List<string>();
 
-        static string[] AdatokBekerese(List<string> SGenre, List<string> MGenre) 
-        {
-            double r = 0.0;
-            string n = "BEKÉRT ADATOK";
-            string t = "";
-            string g = "";
-            int l = 0;
-
-            Console.WriteLine("Mi legyen a minimum IMDb értékelés? [pl. 5.5]");
-            Console.Write("Értékelés: ");
-            try
+            for (int i = 0; i < Opciok.Count(); i++) 
             {
-                r = double.Parse(Console.ReadLine().Trim().Replace(".",","));
-            }
-            catch 
-            {
-                Console.WriteLine("Nem megfelelő formátum/adat. Nyomj meg egy gombot az újrakezdéshez.");
-                Console.ReadKey();
-                Console.Clear();
-                AdatokBekerese(SGenre, MGenre);
+                if (ValasztottOpciok[i] == true) 
+                { 
+                    MikAlapjan.Add(Opciok[i]);
+                }
             }
 
-            if (r < 0.0 || r > 9.9) 
+            foreach (var a in MikAlapjan) 
             {
-                Console.WriteLine("Az értékelésnek nagyobbnak kell lenni mint [0.0] és kisebbnek mint [9.9]. Nyomj meg egy gombot az újrakezdéshez.");
-                Console.ReadKey();
-                Console.Clear();
-                AdatokBekerese(SGenre, MGenre);
+                Console.WriteLine(a);
             }
-
-            Console.WriteLine("Mit szeretnél nézni? [S = Sorozat, M = Film, D = Dokumentum film]");
-            Console.Write("Típus: ");
-            t = Console.ReadLine().Trim();
-
-            if (t == "S")
-            {
-                t = "series";
-
-                string[] adat = seriesBekeres(SGenre, MGenre).Split(";");
-
-                g = adat[0];
-                l = int.Parse(adat[1]);
-            }
-
-            else if (t == "M")
-            {
-                t = "movie";
-                string[] adat = movieBekeres(SGenre, MGenre).Split(";");
-
-                g = adat[0];
-                l = int.Parse(adat[1]);
-            }
-
-            else if (t == "D")
-            {
-                t = "documentary";
-                g = "Documentary";
-
-                l = documentaryBekeres(SGenre, MGenre);
-            }
-
-            else 
-            {
-                Console.WriteLine("Nem megfelelő formátum/adat. Nyomj meg egy gombot az újrakezdéshez.");
-                Console.ReadKey();
-                Console.Clear();
-                AdatokBekerese(SGenre, MGenre);
-            }
-            
-            string[] bekertAdatok = new string[] { Convert.ToString(r), n, t, g, Convert.ToString(l) };
-
-            return bekertAdatok;
-        }
-
-        static string movieBekeres(List<string> SGenre, List<string> MGenre) 
-        {
-            string g = "";
-            int l = 0;
-
-            Console.WriteLine("Milyen műfajú legyen a film? A következők érhetőek el: ");
-            for (int i = 0; i < MGenre.Count(); i++)
-            {
-                Console.WriteLine($"{i + 1}. {MGenre[i]}");
-            }
-            Console.Write("Sorszám: ");
-
-            int sorszam = 0;
-            try
-            {
-                sorszam = int.Parse(Console.ReadLine().Trim()) - 1;
-            }
-            catch
-            {
-                Console.WriteLine("Nem megfelelő formátum/adat. Nyomj meg egy gombot az újrakezdéshez.");
-                Console.ReadKey();
-                Console.Clear();
-                AdatokBekerese(SGenre, MGenre);
-            }
-
-            if (sorszam < 0 || sorszam > MGenre.Count() - 1)
-            {
-                Console.WriteLine("Csak a listában szereplő sorszámot adhatsz meg. Nyomj meg egy gombot az újrakezdéshez.");
-                Console.ReadKey();
-                Console.Clear();
-                AdatokBekerese(SGenre, MGenre);
-            }
-
-            g = MGenre[sorszam];
-
-            Console.WriteLine("Milyen hosszú filmet szeretnél nézni? [percben]");
-            Console.Write("Hossz: ");
-
-            try
-            {
-                l = int.Parse(Console.ReadLine().Trim());
-            }
-            catch
-            {
-                Console.WriteLine("Nem megfelelő formátum/adat. Nyomj meg egy gombot az újrakezdéshez.");
-                Console.ReadKey();
-                Console.Clear();
-                AdatokBekerese(SGenre, MGenre);
-            }
-
-            return g+";"+Convert.ToString(l);
-        }
-
-        static string seriesBekeres(List<string> SGenre, List<string> MGenre)
-        {
-            string g = "";
-            int l = 0;
-
-            Console.WriteLine("Milyen műfajú legyen a sorozat? A következők érhetőek el: ");
-            for (int i = 0; i < SGenre.Count(); i++)
-            {
-                Console.WriteLine($"{i + 1}. {SGenre[i]}");
-            }
-            Console.Write("Sorszám: ");
-
-            int sorszam = 0;
-            try
-            {
-                sorszam = int.Parse(Console.ReadLine().Trim()) - 1;
-            }
-            catch
-            {
-                Console.WriteLine("Nem megfelelő formátum/adat. Nyomj meg egy gombot az újrakezdéshez.");
-                Console.ReadKey();
-                Console.Clear();
-                AdatokBekerese(SGenre, MGenre);
-            }
-
-            if (sorszam < 0 || sorszam > SGenre.Count() - 1)
-            {
-                Console.WriteLine("Csak a listában szereplő sorszámot adhatsz meg. Nyomj meg egy gombot az újrakezdéshez.");
-                Console.ReadKey();
-                Console.Clear();
-                AdatokBekerese(SGenre, MGenre);
-            }
-
-            g = SGenre[sorszam];
-
-            Console.WriteLine("Hány epizódos sorozatot szeretnél nézni? [darab]");
-            Console.Write("Hossz: ");
-
-            try
-            {
-                l = int.Parse(Console.ReadLine().Trim());
-            }
-            catch
-            {
-                Console.WriteLine("Nem megfelelő formátum/adat. Nyomj meg egy gombot az újrakezdéshez.");
-                Console.ReadKey();
-                Console.Clear();
-                AdatokBekerese(SGenre, MGenre);
-            }
-
-            return g + ";" + Convert.ToString(l);
-        }
-
-        static int documentaryBekeres(List<string> SGenre, List<string> MGenre)
-        {
-            int l = 0;
-
-            Console.WriteLine("Milyen hosszú dokumentum filmet szeretnél nézni? [percben]");
-            Console.Write("Hossz: ");
-
-            try
-            {
-                l = int.Parse(Console.ReadLine().Trim());
-            }
-            catch
-            {
-                Console.WriteLine("Nem megfelelő formátum/adat. Nyomj meg egy gombot az újrakezdéshez.");
-                Console.ReadKey();
-                Console.Clear();
-                AdatokBekerese(SGenre, MGenre);
-            }
-
-            return l;
         }
     }
 }
