@@ -1,0 +1,94 @@
+IMDBRATING;NAME;TYPE;GENRE;LENGTH
+9.3;The Shawshank Redemption;movie;Drama,Crime;142
+8.7;Breaking Bad;series;Crime,Drama,Thriller;62
+7.9;Blackfish;documentary;Documentary;83
+8.6;Chernobyl;series;Drama,History,Thriller;5
+8.5;The Social Dilemma;documentary;Documentary,Drama;94
+8.8;Inception;movie;Action,Adventure,Sci-Fi;148
+9.2;Planet Earth II;documentary;Documentary;360
+8.4;Stranger Things;series;Drama,Fantasy,Horror;34
+9.0;The Godfather;movie;Crime,Drama;175
+7.5;Seaspiracy;documentary;Documentary;89
+8.1;The Matrix;movie;Action,Sci-Fi;136
+8.9;The Wire;series;Crime,Drama,Thriller;60
+8.3;Free Solo;documentary;Documentary,Sport;100
+7.8;The Great Hack;documentary;Documentary;113
+8.2;Mindhunter;series;Crime,Drama,Thriller;19
+9.0;The Dark Knight;movie;Action,Crime,Drama;152
+8.6;Cosmos: A Spacetime Odyssey;documentary;Documentary;780
+8.7;Fargo;series;Crime,Drama,Thriller;41
+8.0;The Imitation Game;movie;Biography,Drama,Thriller;113
+7.6;13th;documentary;Documentary;100
+8.5;Better Call Saul;series;Crime,Drama;63
+8.3;The Big Short;movie;Biography,Comedy,Drama;130
+8.1;Wild Wild Country;documentary;Documentary;360
+8.4;House of Cards;series;Drama;73
+8.2;Her;movie;Drama,Romance,Sci-Fi;126
+7.9;American Factory;documentary;Documentary;110
+8.6;The Crown;series;Biography,Drama,History;60
+8.0;The Theory of Everything;movie;Biography,Drama,Romance;123
+8.1;Inside Job;documentary;Documentary;108
+8.3;Narcos;series;Biography,Crime,Drama;30
+8.2;Arrival;movie;Drama,Mystery,Sci-Fi;116
+7.8;Icarus;documentary;Documentary;121
+8.4;Ozark;series;Crime,Drama,Thriller;44
+8.0;The Revenant;movie;Action,Adventure,Drama;156
+8.5;Won’t You Be My Neighbor?;documentary;Documentary,Biography;94
+8.7;The Mandalorian;series;Action,Adventure,Fantasy;24
+8.1;The Grand Budapest Hotel;movie;Adventure,Comedy,Crime;99
+7.7;The Ivory Game;documentary;Documentary;112
+8.6;Succession;series;Drama;39
+8.2;The Martian;movie;Adventure,Drama,Sci-Fi;144
+8.0;Fire in Paradise;documentary;Documentary;40
+8.4;The Boys;series;Action,Comedy,Crime;24
+8.1;Gone Girl;movie;Drama,Mystery,Thriller;149
+7.9;The Bleeding Edge;documentary;Documentary;99
+8.3;The Haunting of Hill House;series;Drama,Horror,Mystery;10
+8.2;The Prestige;movie;Drama,Mystery,Sci-Fi;130
+8.0;American Murder: The Family Next Door;documentary;Documentary,Crime;83
+8.5;Dark;series;Crime,Drama,Mystery;26
+8.1;The Pursuit of Happyness;movie;Biography,Drama;117
+7.8;Athlete A;documentary;Documentary,Crime;104
+8.4;The Queen's Gambit;series;Drama;7
+8.0;The Curious Case of Benjamin Button;movie;Drama,Fantasy,Romance;166
+8.2;My Octopus Teacher;documentary;Documentary;85
+8.6;Sherlock;series;Crime,Drama,Mystery;13
+8.3;The Departed;movie;Crime,Drama,Thriller;151
+7.9;The Minimalists: Less Is Now;documentary;Documentary;53
+8.5;Peaky Blinders;series;Crime,Drama;36
+8.1;The Truman Show;movie;Comedy,Drama,Sci-Fi;103
+8.0;The Great British Baking Show;documentary;Documentary,Reality-TV;1200
+8.7;BoJack Horseman;series;Animation,Comedy,Drama;77
+8.2;The Secret Life of Walter Mitty;movie;Adventure,Comedy,Drama;114
+7.8;Crip Camp;documentary;Documentary;108
+8.4;The Expanse;series;Drama,Mystery,Sci-Fi;62
+8.3;Whiplash;movie;Drama,Music;106
+8.0;The Last Dance;documentary;Documentary,Sport;500
+8.6;Rick and Morty;series;Animation,Adventure,Comedy;61
+8.1;The Perks of Being a Wallflower;movie;Drama,Romance;103
+7.9;Miss Americana;documentary;Documentary,Biography;85
+8.5;The Office;series;Comedy;201
+8.2;The Fault in Our Stars;movie;Drama,Romance;126
+8.0;The Game Changers;documentary;Documentary;88
+8.4;Community;series;Comedy;110
+8.3;The Wolf of Wall Street;movie;Biography,Comedy,Crime;180
+7.8;Cowspiracy;documentary;Documentary;91
+8.6;Brooklyn Nine-Nine;series;Comedy,Crime;153
+8.1;Silver Linings Playbook;movie;Comedy,Drama,Romance;122
+8.0;The True Cost;documentary;Documentary;92
+8.5;How I Met Your Mother;series;Comedy,Romance;208
+8.2;The Big Sick;movie;Comedy,Drama,Romance;120
+7.9;Before the Flood;documentary;Documentary;96
+8.4;Parks and Recreation;series;Comedy;125
+8.3;Django Unchained;movie;Drama,Western;165
+8.0;The Social Network;movie;Biography,Drama;120
+8.1;The Invisible Man;movie;Horror,Mystery,Sci-Fi;124
+8.2;Knives Out;movie;Comedy,Crime,Drama;130
+8.0;The Trial of the Chicago 7;movie;Drama,History,Thriller;129
+8.3;Parasite;movie;Comedy,Drama,Thriller;132
+8.1;1917;movie;Action,Drama,War;119
+8.4;Tenet;movie;Action,Sci-Fi,Thriller;150
+8.2;Soul;movie;Animation,Adventure,Comedy;100
+8.0;Nomadland;movie;Drama;108
+8.3;Sound of Metal;movie;Drama,Music;120
+8.1;Minari;movie;Drama;115
