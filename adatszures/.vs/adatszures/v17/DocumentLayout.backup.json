@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\peres\\Desktop\\C#\\adatszures\\",
+  "WorkspaceRootPath": "C:\\Users\\peres\\Desktop\\adatszures\\adatszures\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{14124459-D354-4C61-B2E5-F62F0A676296}|adatszures\\adatszures.csproj|c:\\users\\peres\\desktop\\c#\\adatszures\\adatszures\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{14124459-D354-4C61-B2E5-F62F0A676296}|adatszures\\adatszures.csproj|c:\\users\\peres\\desktop\\adatszures\\adatszures\\adatszures\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{14124459-D354-4C61-B2E5-F62F0A676296}|adatszures\\adatszures.csproj|solutionrelative:adatszures\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{14124459-D354-4C61-B2E5-F62F0A676296}|adatszures\\adatszures.csproj|c:\\users\\peres\\desktop\\c#\\adatszures\\adatszures\\filmadatok.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{14124459-D354-4C61-B2E5-F62F0A676296}|adatszures\\adatszures.csproj|c:\\users\\peres\\desktop\\adatszures\\adatszures\\adatszures\\filmadatok.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{14124459-D354-4C61-B2E5-F62F0A676296}|adatszures\\adatszures.csproj|solutionrelative:adatszures\\filmadatok.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -24,24 +24,23 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "FilmAdatok.cs",
-              "DocumentMoniker": "C:\\Users\\peres\\Desktop\\C#\\adatszures\\adatszures\\FilmAdatok.cs",
+              "DocumentMoniker": "C:\\Users\\peres\\Desktop\\adatszures\\adatszures\\adatszures\\FilmAdatok.cs",
               "RelativeDocumentMoniker": "adatszures\\FilmAdatok.cs",
-              "ToolTip": "C:\\Users\\peres\\Desktop\\C#\\adatszures\\adatszures\\FilmAdatok.cs",
+              "ToolTip": "C:\\Users\\peres\\Desktop\\adatszures\\adatszures\\adatszures\\FilmAdatok.cs",
               "RelativeToolTip": "adatszures\\FilmAdatok.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAABRAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T14:21:52.573Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-10T14:21:52.573Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\peres\\Desktop\\C#\\adatszures\\adatszures\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\peres\\Desktop\\adatszures\\adatszures\\adatszures\\Program.cs",
               "RelativeDocumentMoniker": "adatszures\\Program.cs",
-              "ToolTip": "C:\\Users\\peres\\Desktop\\C#\\adatszures\\adatszures\\Program.cs",
+              "ToolTip": "C:\\Users\\peres\\Desktop\\adatszures\\adatszures\\adatszures\\Program.cs",
               "RelativeToolTip": "adatszures\\Program.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAgwCcAAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAABMAAAAAAAAAAAAgwC0AAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-10T14:18:37.675Z",
               "EditorCaption": ""

@@ -43,7 +43,7 @@ namespace adatszures
             Console.WriteLine(BekertAdatok.rating);
             Console.WriteLine(BekertAdatok.name);
             Console.WriteLine(BekertAdatok.type);
-            Console.WriteLine(BekertAdatok.genre);
+            Console.WriteLine(BekertAdatok.genre[0]);
             Console.WriteLine(BekertAdatok.length);
         }
 
@@ -55,7 +55,7 @@ namespace adatszures
             string g = "";
             int l = 0;
 
-            Console.WriteLine("Mi legyen a minimum IMDb rating? [pl. 5,5/5.5]");
+            Console.WriteLine("Mi legyen a minimum IMDb értékelés? [pl. 5.5]");
             Console.Write("Értékelés: ");
             try
             {
@@ -126,7 +126,7 @@ namespace adatszures
             string g = "";
             int l = 0;
 
-            Console.WriteLine("Milyen genre legyen a film? Filmeknél a következők érhetőek el: ");
+            Console.WriteLine("Milyen műfajú legyen a film? A következők érhetőek el: ");
             for (int i = 0; i < MGenre.Count(); i++)
             {
                 Console.WriteLine($"{i + 1}. {MGenre[i]}");
@@ -179,7 +179,7 @@ namespace adatszures
             string g = "";
             int l = 0;
 
-            Console.WriteLine("Milyen genre legyen a sorozat? Sorozatoknál a következők érhetőek el: ");
+            Console.WriteLine("Milyen műfajú legyen a sorozat? A következők érhetőek el: ");
             for (int i = 0; i < SGenre.Count(); i++)
             {
                 Console.WriteLine($"{i + 1}. {SGenre[i]}");
