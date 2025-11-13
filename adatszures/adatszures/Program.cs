@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace adatszures 
 {
@@ -17,6 +19,7 @@ namespace adatszures
 
             List<string> SGenre = new List<string>();
             List<string> MGenre = new List<string>();
+            List<string> DGenre = new List<string>();
 
             foreach (var F in BemenetiAdatok) 
             {
@@ -30,6 +33,11 @@ namespace adatszures
                     else if (F.type == "movie" && !MGenre.Contains(G))
                     {
                         MGenre.Add(G);
+                    }
+
+                    else if (F.type == "documentary" && !DGenre.Contains(G))
+                    {
+                        DGenre.Add(G);
                     }
                 }
             }
@@ -170,17 +178,17 @@ namespace adatszures
             }
             Console.Clear();
 
-            List<string> SzurtAdatok = Bekeres(ValasztottOpciok, SGenre, MGenre);
-
+            List<string> SzurtAdatok = Bekeres(ValasztottOpciok, SGenre, MGenre, DGenre, BemenetiAdatok);
             foreach (var a in SzurtAdatok) 
             {
-                Console.WriteLine(a);
+                Console.WriteLine(a.Trim());
             }
         }
 
-        static List<string> Bekeres(List<bool> ValasztottOpciok, List<string> SGenre, List<string> MGenre) 
+        static List<string> Bekeres(List<bool> ValasztottOpciok, List<string> SGenre, List<string> MGenre, List<string> DGenre, List<FilmAdatok> BemenetiAdatok) 
         {
             List<string> SzuresAdatok = new List<string>();
+            string tipusMufaj = "NINCS";
 
             if (ValasztottOpciok[0] == true) 
             {
@@ -190,11 +198,20 @@ namespace adatszures
 
             if (ValasztottOpciok[1] == true)
             {
-                SzuresAdatok.Add(Tipus(false));
-
                 if (ValasztottOpciok[3] == true)
                 {
-                    SzuresAdatok.Add(Tipus(true));
+                    string a = Tipus(true, BemenetiAdatok);
+                    SzuresAdatok.Add(a.Split(';')[0]);
+                    SzuresAdatok.Add(a.Split(';')[1]);
+
+                    tipusMufaj = a.Split(';')[0].Substring(1);
+                }
+
+                else 
+                {
+                    string a = Tipus(false, BemenetiAdatok);
+                    SzuresAdatok.Add(a);
+                    tipusMufaj = a.Substring(1);
                 }
 
                 Console.Clear();
@@ -202,7 +219,7 @@ namespace adatszures
 
             if (ValasztottOpciok[2] == true)
             {
-                SzuresAdatok.Add(Mufaj());
+                SzuresAdatok.Add(Mufaj(tipusMufaj, SGenre, MGenre, DGenre, BemenetiAdatok));
                 Console.Clear();
             }
 
@@ -229,7 +246,7 @@ namespace adatszures
 
                     if (ertekeles < 0.0 || ertekeles > 10.0)
                     {
-                        Console.WriteLine("Az értékelésnem [0.0] és [10.0] között kell lennie.");
+                        Console.WriteLine("Az értékelésnek [0.0] és [10.0] között kell lennie.");
                     }
 
                     else 
@@ -246,16 +263,25 @@ namespace adatszures
             return "E" + Convert.ToString(ertekeles);
         }
 
-        static string Tipus(bool kellHossz)
+        static string Tipus(bool kellHossz, List<FilmAdatok> BemenetiAdatok)
         {
-            string[] Tipusok = { "Dokumentum Film", "Film", "Sorozat" };
+            List<string> Tipusok = new List<string>();
+
+            foreach (var t in BemenetiAdatok) 
+            {
+                if (!Tipusok.Contains(t.type)) 
+                {
+                    Tipusok.Add(t.type);
+                }
+            }
+
             int sorszam = 0;
             bool helyes = false;
 
             Console.WriteLine("Milyen típsú műsort akarsz nézni? A következők érhetőek el:");
-            for (int i = 0; i < Tipusok.Length; i++) 
+            for (int i = 0; i < Tipusok.Count; i++) 
             {
-                Console.WriteLine($"  {i+1}. {Tipusok[i]}");
+                Console.WriteLine($"  {i+1}. {Tipusok[i].ToUpper()[0]}{Tipusok[i].Substring(1)}");
             }
 
 
@@ -266,7 +292,7 @@ namespace adatszures
                     Console.Write("Sorszám: ");
                     sorszam = int.Parse(Console.ReadLine().Trim());
 
-                    if ((sorszam - 1) < 0 || (sorszam - 1) > Tipusok.Length)
+                    if ((sorszam - 1) < 0 || (sorszam - 1) > Tipusok.Count)
                     {
                         Console.WriteLine("Csak a listában szereplő sorszámot adhatsz meg.");
                     }
@@ -284,49 +310,244 @@ namespace adatszures
 
             }
 
-            string output = "";
+            string output = Tipusok[sorszam-1];
 
-            if (sorszam - 1 == 0) 
+            if (kellHossz)
             {
-                output = "documentary";
-            }
-
-            if (sorszam - 1 == 1)
-            {
-                output = "movie";
-            }
-
-            if (sorszam - 1 == 2)
-            {
-                output = "series";
-            }
-
-            if (kellHossz) 
-            {
-                Hossz(output);
-            }
-
-            return "T" + output;
-        }
-
-        static string Mufaj()
-        {
-            return "X";
-        }
-
-        static string Hossz(string Tipus)
-        {
-            if (Tipus == "movie" || Tipus == "documentary")
-            {
-
+                Console.Clear();
+                return "T" + output + ";H" + Hossz(output);
             }
 
             else 
             {
+                return "T" + output;
+            }      
+        }
 
+        static string Mufaj(string Tipus, List<string> SGenre, List<string> MGenre, List<string> DGenre, List<FilmAdatok> BemenetiAdatok)
+        {
+            bool helyes = false;
+            string output = "";
+            int sorszam = 0;
+            List<string> OsszesGenre = new List<string>();
+
+            foreach (var adat in BemenetiAdatok) 
+            {
+                foreach (var genre in adat.genre) 
+                {
+                    if (!OsszesGenre.Contains(genre))
+                    {
+                        OsszesGenre.Add(genre);
+                    }
+                }
             }
 
-            return "X";
+            if (Tipus == "NINCS")
+            {
+                Console.WriteLine("Milyen műfajú műsort szeretnél nézni? A következő műfajok érhetőek el:");
+
+                for (int i = 0; i < OsszesGenre.Count; i++)
+                {
+                    Console.WriteLine($"  {i + 1}. {OsszesGenre[i]}");
+                }
+
+                while (helyes != true) 
+                {
+                    try
+                    {
+                        Console.Write("Sorszám: ");
+                        sorszam = int.Parse(Console.ReadLine().Trim());
+
+                        if (sorszam - 1 < 0 || sorszam > OsszesGenre.Count)
+                        {
+                            Console.WriteLine("Csak a listában szereplő sorszámot adhatsz meg.");
+                        }
+                        else 
+                        {
+                            helyes = true;
+                            output = OsszesGenre[sorszam - 1];
+                        }
+                    }
+
+                    catch 
+                    {
+                        Console.WriteLine("Nem megfelelő adat");
+                    }
+                }
+            }
+
+            else if (Tipus == "series") 
+            {
+                Console.WriteLine("Milyen műfajú sorozatot szeretnél nézni? A következő műfajok érhetőek el:");
+
+                for (int i = 0; i < SGenre.Count; i++)
+                {
+                    Console.WriteLine($"  {i + 1}. {SGenre[i]}");
+                }
+
+                while (helyes != true)
+                {
+                    try
+                    {
+                        Console.Write("Sorszám: ");
+                        sorszam = int.Parse(Console.ReadLine().Trim());
+
+                        if (sorszam - 1 < 0 || sorszam > SGenre.Count)
+                        {
+                            Console.WriteLine("Csak a listában szereplő sorszámot adhatsz meg.");
+                        }
+                        else
+                        {
+                            helyes = true;
+                            output = SGenre[sorszam - 1];
+                        }
+                    }
+
+                    catch
+                    {
+                        Console.WriteLine("Nem megfelelő adat");
+                    }
+                }
+            }
+
+            else if (Tipus == "movie")
+            {
+                Console.WriteLine("Milyen műfajú filmet szeretnél nézni? A következő műfajok érhetőek el:");
+
+                for (int i = 0; i < MGenre.Count; i++)
+                {
+                    Console.WriteLine($"  {i + 1}. {MGenre[i]}");
+                }
+
+                while (helyes != true)
+                {
+                    try
+                    {
+                        Console.Write("Sorszám: ");
+                        sorszam = int.Parse(Console.ReadLine().Trim());
+
+                        if (sorszam - 1 < 0 || sorszam > MGenre.Count)
+                        {
+                            Console.WriteLine("Csak a listában szereplő sorszámot adhatsz meg.");
+                        }
+                        else
+                        {
+                            helyes = true;
+                            output = MGenre[sorszam - 1];
+                        }
+                    }
+
+                    catch
+                    {
+                        Console.WriteLine("Nem megfelelő adat");
+                    }
+                }
+            }
+
+            else if (Tipus == "documentary")
+            {
+                Console.WriteLine("Milyen műfajú dokumentum filmet szeretnél nézni? A következő műfajok érhetőek el:");
+
+                for (int i = 0; i < DGenre.Count; i++)
+                {
+                    Console.WriteLine($"  {i + 1}. {DGenre[i]}");
+                }
+
+                while (helyes != true)
+                {
+                    try
+                    {
+                        Console.Write("Sorszám: ");
+                        sorszam = int.Parse(Console.ReadLine().Trim());
+
+                        if (sorszam - 1 < 0 || sorszam > DGenre.Count)
+                        {
+                            Console.WriteLine("Csak a listában szereplő sorszámot adhatsz meg.");
+                        }
+                        else
+                        {
+                            helyes = true;
+                            output = DGenre[sorszam - 1];
+                        }
+                    }
+
+                    catch
+                    {
+                        Console.WriteLine("Nem megfelelő adat");
+                    }
+                }
+            }
+
+            return "M" + output;
+        }
+
+        static string Hossz(string Tipus)
+        {
+            bool helyes = false;
+            int lenght = 0;
+            string output = "";
+
+            if (Tipus == "movie" || Tipus == "documentary")
+            {
+                Console.WriteLine("Hány perces filmet szeretnél nézni?");
+
+                while (helyes != true) 
+                {
+                    Console.Write("Hossz: ");
+
+                    try
+                    {
+                        lenght = int.Parse(Console.ReadLine().Trim());
+
+                        if (lenght < 0)
+                        {
+                            Console.WriteLine("Pozitív számot kell megadnod.");
+                        }
+                        else 
+                        {
+                            helyes = true;
+                            output = Convert.ToString(lenght) + "P";
+                        }
+                    }
+
+                    catch 
+                    {
+                        Console.WriteLine("Nem megfelelő adat.");
+                    }
+                }
+            }
+
+            else 
+            {
+                Console.WriteLine("Hány részes sorozatot szeretnél nézni?");
+
+                while (helyes != true)
+                {
+                    Console.Write("Hossz: ");
+
+                    try
+                    {
+                        lenght = int.Parse(Console.ReadLine().Trim());
+
+                        if (lenght < 0)
+                        {
+                            Console.WriteLine("Pozitív számot kell megadnod.");
+                        }
+                        else
+                        {
+                            helyes = true;
+                            output = Convert.ToString(lenght) + "R";
+                        }
+                    }
+
+                    catch
+                    {
+                        Console.WriteLine("Nem megfelelő adat.");
+                    }
+                }
+            }
+
+            return output;
         }
     }
 }
