@@ -163,28 +163,19 @@ namespace adatszures
                         }
                     }
                 }
-                if (hibaIras) 
+                if (hibaIras)
                 {
                     Console.WriteLine("Ehhez az opcióhoz ki kell választanod a típust alapú szűrést is.");
                 }
             }
-
             Console.Clear();
 
-            List<string> MikAlapjan = new List<string>();
+            Bekeres(ValasztottOpciok, SGenre, MGenre);
+        }
 
-            for (int i = 0; i < Opciok.Count(); i++) 
-            {
-                if (ValasztottOpciok[i] == true) 
-                { 
-                    MikAlapjan.Add(Opciok[i]);
-                }
-            }
-
-            foreach (var a in MikAlapjan) 
-            {
-                Console.WriteLine(a);
-            }
+        static void Bekeres(List<bool> KivalasztottKategoriak, List<string> SGenre, List<string> MGenre) 
+        {
+            Console.WriteLine("Szia");
         }
     }
 }
