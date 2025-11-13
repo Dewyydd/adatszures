@@ -27,3 +27,17 @@ C:\Users\peres\Desktop\adatszures\adatszures\adatszures\obj\Debug\net8.0\refint\
 C:\Users\peres\Desktop\adatszures\adatszures\adatszures\obj\Debug\net8.0\adatszures.pdb
 C:\Users\peres\Desktop\adatszures\adatszures\adatszures\obj\Debug\net8.0\adatszures.genruntimeconfig.cache
 C:\Users\peres\Desktop\adatszures\adatszures\adatszures\obj\Debug\net8.0\ref\adatszures.dll
+Z:\12. A\IKT\adatszures-main\adatszures\adatszures\bin\Debug\net8.0\adatszures.exe
+Z:\12. A\IKT\adatszures-main\adatszures\adatszures\bin\Debug\net8.0\adatszures.deps.json
+Z:\12. A\IKT\adatszures-main\adatszures\adatszures\bin\Debug\net8.0\adatszures.runtimeconfig.json
+Z:\12. A\IKT\adatszures-main\adatszures\adatszures\bin\Debug\net8.0\adatszures.dll
+Z:\12. A\IKT\adatszures-main\adatszures\adatszures\bin\Debug\net8.0\adatszures.pdb
+Z:\12. A\IKT\adatszures-main\adatszures\adatszures\obj\Debug\net8.0\adatszures.GeneratedMSBuildEditorConfig.editorconfig
+Z:\12. A\IKT\adatszures-main\adatszures\adatszures\obj\Debug\net8.0\adatszures.AssemblyInfoInputs.cache
+Z:\12. A\IKT\adatszures-main\adatszures\adatszures\obj\Debug\net8.0\adatszures.AssemblyInfo.cs
+Z:\12. A\IKT\adatszures-main\adatszures\adatszures\obj\Debug\net8.0\adatszures.csproj.CoreCompileInputs.cache
+Z:\12. A\IKT\adatszures-main\adatszures\adatszures\obj\Debug\net8.0\adatszures.dll
+Z:\12. A\IKT\adatszures-main\adatszures\adatszures\obj\Debug\net8.0\refint\adatszures.dll
+Z:\12. A\IKT\adatszures-main\adatszures\adatszures\obj\Debug\net8.0\adatszures.pdb
+Z:\12. A\IKT\adatszures-main\adatszures\adatszures\obj\Debug\net8.0\adatszures.genruntimeconfig.cache
+Z:\12. A\IKT\adatszures-main\adatszures\adatszures\obj\Debug\net8.0\ref\adatszures.dll
