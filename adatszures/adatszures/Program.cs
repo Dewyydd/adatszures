@@ -44,8 +44,8 @@ namespace adatszures
 
             bool valaszt = true;
             int currentIndex = 0;
-            List<string> Opciok = new List<string>() {"Értékelés", "Típus", "Műfaj", "Hossz"};
-            List<bool> ValasztottOpciok = [false, false, false, false];
+            List<string> Opciok = new List<string>() {"Értékelés", "Típus", "Műfaj", "Hossz", "Maximum sorok"};
+            List<bool> ValasztottOpciok = [false, false, false, false, false];
 
             Console.WriteLine("Mi alapján szeretnél szűrni? [ENTER = Kiválaszt | SPACE = BEFEJEZÉS]");
             for (int i = 0; i < Opciok.Count(); i++)
@@ -92,7 +92,7 @@ namespace adatszures
                     break;
                 }
 
-                if (keyInfo.Key == ConsoleKey.DownArrow && currentIndex != 3)
+                if (keyInfo.Key == ConsoleKey.DownArrow && currentIndex != ValasztottOpciok.Count() - 1)
                 {
                     currentIndex++;
                 }
@@ -223,6 +223,12 @@ namespace adatszures
                 Console.Clear();
             }
 
+            if (ValasztottOpciok[4] == true) 
+            {
+                SzuresAdatok.Add(Darabszam());
+                Console.Clear();
+            }
+
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Sikeres adat bekérés.\nNyomj meg egy gombot a folytatáshoz!");
             Console.ForegroundColor = ConsoleColor.White;
@@ -262,7 +268,6 @@ namespace adatszures
 
             return "E" + Convert.ToString(ertekeles);
         }
-
         static string Tipus(bool kellHossz, List<FilmAdatok> BemenetiAdatok)
         {
             List<string> Tipusok = new List<string>();
@@ -323,7 +328,6 @@ namespace adatszures
                 return "T" + output;
             }      
         }
-
         static string Mufaj(string Tipus, List<string> SGenre, List<string> MGenre, List<string> DGenre, List<FilmAdatok> BemenetiAdatok)
         {
             bool helyes = false;
@@ -480,7 +484,6 @@ namespace adatszures
 
             return "M" + output;
         }
-
         static string Hossz(string Tipus)
         {
             bool helyes = false;
@@ -506,7 +509,7 @@ namespace adatszures
                         else 
                         {
                             helyes = true;
-                            output = Convert.ToString(lenght) + "P";
+                            output = Convert.ToString(lenght);
                         }
                     }
 
@@ -536,7 +539,7 @@ namespace adatszures
                         else
                         {
                             helyes = true;
-                            output = Convert.ToString(lenght) + "R";
+                            output = Convert.ToString(lenght);
                         }
                     }
 
@@ -548,6 +551,40 @@ namespace adatszures
             }
 
             return output;
+        }
+        static string Darabszam() 
+        {
+            bool helyes = false;
+            int db = 0;
+            string output = "";
+
+            Console.WriteLine("Maximum hány sor adatot szeretnél megjeleníteni?");
+
+            while (helyes != true)
+            {
+                Console.Write("Darabszám: ");
+
+                try
+                {
+                    db = int.Parse(Console.ReadLine().Trim());
+
+                    if (db < 0)
+                    {
+                        Console.WriteLine("Pozitív számot kell megadnod.");
+                    }
+                    else
+                    {
+                        helyes = true;
+                        output = Convert.ToString(db);
+                    }
+                }
+
+                catch
+                {
+                    Console.WriteLine("Nem megfelelő adat.");
+                }
+            }
+                return "D" + db;
         }
     }
 }
