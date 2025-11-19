@@ -296,7 +296,7 @@ namespace adatszures
                 Console.WriteLine("\tMaximum Sorok: " + maxSorok);
             }
 
-            Console.WriteLine("\n\n\n");
+            Console.WriteLine("\n");
             Console.WriteLine("Szűrt adatok: ");
         }
 

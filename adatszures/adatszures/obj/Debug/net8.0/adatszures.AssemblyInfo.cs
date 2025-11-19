@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("adatszures")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d8f42e8582a5dd7660eb3705b9bed95f84a77c9b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+defe36ba7f67a1742061de626e3f0be3c34d855c")]
 [assembly: System.Reflection.AssemblyProductAttribute("adatszures")]
 [assembly: System.Reflection.AssemblyTitleAttribute("adatszures")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
