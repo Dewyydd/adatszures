@@ -179,13 +179,13 @@ namespace adatszures
             Console.Clear();
 
             List<string> SzurtAdatok = Bekeres(ValasztottOpciok, SGenre, MGenre, DGenre, BemenetiAdatok);
-            foreach (var a in SzurtAdatok) 
-            {
-                Console.WriteLine(a.Trim());
-            }
+            Console.Clear();
+
+            Szures(SzurtAdatok, BemenetiAdatok);
         }
 
-        static List<string> Bekeres(List<bool> ValasztottOpciok, List<string> SGenre, List<string> MGenre, List<string> DGenre, List<FilmAdatok> BemenetiAdatok) 
+        static List<string> Bekeres(List<bool> ValasztottOpciok, List<string> SGenre, List<string> MGenre, List<string> DGenre, List<FilmAdatok> BemenetiAdatok)
+            
         {
             List<string> SzuresAdatok = new List<string>();
             string tipusMufaj = "NINCS";
@@ -235,6 +235,69 @@ namespace adatszures
             Console.ReadKey();
 
             return SzuresAdatok;
+        }
+
+        static void Szures(List<string> SzurtAdatok, List<FilmAdatok> BemenetiAdatok) 
+        {
+            double minErtekeles = 0.0;
+            string tipus = "";
+            string mufaj = "";
+            int minHossz = 0;
+            int maxSorok = 0;
+
+            foreach (var a in SzurtAdatok) 
+            {
+                if (a[0] == 'E') 
+                {
+                    minErtekeles = double.Parse(a.Substring(1));
+                }
+
+                if (a[0] == 'T')
+                {
+                    tipus = a.Substring(1);
+                }
+
+                if (a[0] == 'H')
+                {
+                    minHossz = int.Parse(a.Substring(1));
+                }
+
+                if (a[0] == 'M')
+                {
+                    mufaj = a.Substring(1);
+                }
+
+                if (a[0] == 'D')
+                {
+                    maxSorok = int.Parse(a.Substring(1));
+                }
+            }
+
+            Console.WriteLine("Az adatok a következők alapján lettek szűrve: ");
+
+            if (minErtekeles != 0.0) 
+            {
+                Console.WriteLine("\tMinimum Értékelés: " + minErtekeles);
+            }
+            if (tipus != "") 
+            {
+                Console.WriteLine("\tTípus: " + tipus);
+            }
+            if (mufaj != "") 
+            {
+                Console.WriteLine("\tMűfaj: " + mufaj);
+            }
+            if (minHossz != 0) 
+            {
+                Console.WriteLine("\tMinimum Hossz: " + minHossz);
+            }
+            if (maxSorok != 0) 
+            {
+                Console.WriteLine("\tMaximum Sorok: " + maxSorok);
+            }
+
+            Console.WriteLine("\n\n\n");
+            Console.WriteLine("Szűrt adatok: ");
         }
 
         static string Ertekeles() 
