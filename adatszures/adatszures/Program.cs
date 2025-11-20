@@ -239,11 +239,13 @@ namespace adatszures
 
         static void Szures(List<string> SzurtAdatok, List<FilmAdatok> BemenetiAdatok) 
         {
-            double minErtekeles = 0.0;
-            string tipus = "";
-            string mufaj = "";
-            int minHossz = 0;
-            int maxSorok = 0;
+            double? minErtekeles = null;
+            string? tipus = null;
+            string? mufaj = null;
+            int? minHossz = null;
+            int? maxSorok = null;
+
+            List<FilmAdatok> VegsoLista = new List<FilmAdatok>();
 
             foreach (var a in SzurtAdatok) 
             {
@@ -275,29 +277,117 @@ namespace adatszures
 
             Console.WriteLine("Az adatok a következők alapján lettek szűrve: ");
 
-            if (minErtekeles != 0.0) 
+            if (minErtekeles != null) 
             {
                 Console.WriteLine("\tMinimum Értékelés: " + minErtekeles);
             }
-            if (tipus != "") 
+            if (tipus != null) 
             {
                 Console.WriteLine("\tTípus: " + tipus);
             }
-            if (mufaj != "") 
+            if (mufaj != null) 
             {
                 Console.WriteLine("\tMűfaj: " + mufaj);
             }
-            if (minHossz != 0) 
+            if (minHossz != null) 
             {
                 Console.WriteLine("\tMinimum Hossz: " + minHossz);
             }
-            if (maxSorok != 0) 
+            if (maxSorok != null) 
             {
                 Console.WriteLine("\tMaximum Sorok: " + maxSorok);
             }
 
-            Console.WriteLine("\n");
-            Console.WriteLine("Szűrt adatok: ");
+            Console.WriteLine("\nSzűrt adatok: ");
+
+            foreach (var a in BemenetiAdatok) 
+            {
+                bool joTipus = false;
+                bool joErtekeles = false;
+                bool joMufaj = false;
+                bool joHossz = false;
+
+                if (tipus == a.type)
+                {
+                    joTipus = true;
+                }
+
+                else if (tipus == null)
+                {
+                    joTipus = true;
+                }
+
+                if (minErtekeles < a.rating)
+                {
+                    joErtekeles = true;
+                }
+
+                else if (minErtekeles == null) 
+                {
+                    joErtekeles = true;
+                }
+
+                if (a.genre.Contains(mufaj))
+                {
+                    joMufaj = true;
+                }
+
+                else if (mufaj == null) 
+                {
+                    joMufaj = true;
+                }
+
+                if (minHossz < a.length)
+                {
+                    joHossz = true;
+                }
+
+                else if (minHossz == null) 
+                {
+                    joHossz = true;
+                }
+
+
+                if (joErtekeles && joTipus && joMufaj && joHossz) 
+                {
+                    VegsoLista.Add(a);
+                }
+            }
+
+            if (VegsoLista.Count == 0)
+            {
+                Console.WriteLine($"\tNem található a szűrésnek megfelelő adat.");
+            }
+
+            else 
+            {
+                if (maxSorok != null)
+                {
+                    if (maxSorok <= VegsoLista.Count())
+                    {
+                        for (int i = 0; i < maxSorok; i++)
+                        {
+                            Console.WriteLine($"\t{VegsoLista[i].rating} | {VegsoLista[i].name}");
+                        }
+                    }
+
+                    else
+                    {
+                        foreach (var V in VegsoLista)
+                        {
+                            Console.WriteLine($"\t{V.rating} | {V.name}");
+                        }
+                    }
+                }
+
+                else
+                {
+                    foreach (var V in VegsoLista)
+                    {
+                        Console.WriteLine($"\t{V.rating} | {V.name}");
+                    }
+                }
+            }
         }
 
         static string Ertekeles() 
