@@ -239,6 +239,7 @@ namespace adatszures
 
         static void Szures(List<string> SzurtAdatok, List<FilmAdatok> BemenetiAdatok) 
         {
+            //Szűrések létrehozása és beállítása
             double? minErtekeles = null;
             string? tipus = null;
             string? mufaj = null;
@@ -247,6 +248,7 @@ namespace adatszures
 
             List<FilmAdatok> VegsoLista = new List<FilmAdatok>();
 
+            //Szűrési értékek beállítása
             foreach (var a in SzurtAdatok) 
             {
                 if (a[0] == 'E') 
@@ -275,6 +277,7 @@ namespace adatszures
                 }
             }
 
+            //Szürési szempontok kiírása
             Console.WriteLine("Az adatok a következők alapján lettek szűrve: ");
 
             if (minErtekeles != null) 
@@ -298,6 +301,7 @@ namespace adatszures
                 Console.WriteLine("\tMaximum Sorok: " + maxSorok);
             }
 
+            //Szűrt adatok kiírása
             Console.WriteLine("\nSzűrt adatok: ");
 
             foreach (var a in BemenetiAdatok) 
@@ -367,7 +371,7 @@ namespace adatszures
                     {
                         for (int i = 0; i < maxSorok; i++)
                         {
-                            Console.WriteLine($"\t{VegsoLista[i].rating} | {VegsoLista[i].name}");
+                            Console.WriteLine($"\t{VegsoLista[i].rating}\t| {VegsoLista[i].name}");
                         }
                     }
 
@@ -375,7 +379,7 @@ namespace adatszures
                     {
                         foreach (var V in VegsoLista)
                         {
-                            Console.WriteLine($"\t{V.rating} | {V.name}");
+                            Console.WriteLine($"\t{V.rating}\t| {V.name}");
                         }
                     }
                 }
@@ -384,7 +388,7 @@ namespace adatszures
                 {
                     foreach (var V in VegsoLista)
                     {
-                        Console.WriteLine($"\t{V.rating} | {V.name}");
+                        Console.WriteLine($"\t{V.rating}\t| {V.name}");
                     }
                 }
             }
@@ -436,7 +440,7 @@ namespace adatszures
             int sorszam = 0;
             bool helyes = false;
 
-            Console.WriteLine("Milyen típsú műsort akarsz nézni? A következők érhetőek el:");
+            Console.WriteLine("Milyen típúsú műsort akarsz nézni? A következők érhetőek el:");
             for (int i = 0; i < Tipusok.Count; i++) 
             {
                 Console.WriteLine($"  {i+1}. {Tipusok[i].ToUpper()[0]}{Tipusok[i].Substring(1)}");
@@ -645,7 +649,7 @@ namespace adatszures
 
             if (Tipus == "movie" || Tipus == "documentary")
             {
-                Console.WriteLine("Hány perces filmet szeretnél nézni?");
+                Console.WriteLine("Minimum hány perces filmet szeretnél nézni?");
 
                 while (helyes != true) 
                 {
@@ -675,7 +679,7 @@ namespace adatszures
 
             else 
             {
-                Console.WriteLine("Hány részes sorozatot szeretnél nézni?");
+                Console.WriteLine("Minimum hány részes sorozatot szeretnél nézni?");
 
                 while (helyes != true)
                 {
