@@ -8,6 +8,7 @@ namespace adatszures
     {
         static void Main(string[] args)
         {
+            //Adatok beolvasása fileból
             List<FilmAdatok> BemenetiAdatok = new List<FilmAdatok>();
 
             foreach (var line in File.ReadAllLines("data.csv").Skip(1)) 
@@ -17,6 +18,7 @@ namespace adatszures
                 BemenetiAdatok.Add(temp);
             }
 
+            //Típusonként múfajok elmentése listákba
             List<string> SGenre = new List<string>();
             List<string> MGenre = new List<string>();
             List<string> DGenre = new List<string>();
@@ -42,11 +44,13 @@ namespace adatszures
                 }
             }
 
+            //Szűrési szempontok kiválasztása
             bool valaszt = true;
             int currentIndex = 0;
             List<string> Opciok = new List<string>() {"Értékelés", "Típus", "Műfaj", "Hossz", "Maximum sorok"};
             List<bool> ValasztottOpciok = [false, false, false, false, false];
 
+            //Nyílakkal való mozgás + színes kiírás
             Console.WriteLine("Mi alapján szeretnél szűrni? [ENTER = Kiválaszt | SPACE = BEFEJEZÉS]");
             for (int i = 0; i < Opciok.Count(); i++)
             {
@@ -109,6 +113,7 @@ namespace adatszures
 
                 if (keyInfo.Key == ConsoleKey.Enter) 
                 {
+                    //Ha a 'Típus' nincs kiválasztva nem válaszhatjuk ki a 'Hossz'-t
                     if (ValasztottOpciok[1] == false && currentIndex == 3)
                     {
                         continue;
@@ -116,6 +121,7 @@ namespace adatszures
 
                     else 
                     {
+                        //Ha a 'Típust' a felhasználó false-ra változtatja és a 'Hossz' true akkor a 'Hossz' is false lesz
                         if (currentIndex == 1 && ValasztottOpciok[1] == true)
                         {
                             ValasztottOpciok[1] = false;
@@ -124,6 +130,8 @@ namespace adatszures
 
                         else 
                         {
+
+                            //Ha a jelenlegi opció hamis akkor true lesz, ha true akkor false lesz
                             if (ValasztottOpciok[currentIndex] == false)
                             {
                                 ValasztottOpciok[currentIndex] = true;
@@ -178,35 +186,42 @@ namespace adatszures
             }
             Console.Clear();
 
+            //Szűrési szempontok pontos adatainak bekérése és lista feltöltése
             List<string> SzurtAdatok = Bekeres(ValasztottOpciok, SGenre, MGenre, DGenre, BemenetiAdatok);
             Console.Clear();
 
+            //Adatok szűrése
             Szures(SzurtAdatok, BemenetiAdatok);
         }
-
         static List<string> Bekeres(List<bool> ValasztottOpciok, List<string> SGenre, List<string> MGenre, List<string> DGenre, List<FilmAdatok> BemenetiAdatok)
             
         {
             List<string> SzuresAdatok = new List<string>();
-            string tipusMufaj = "NINCS";
+            string tipusMufaj = "NINCS"; //Alapból NINCS-re állítva hogy ne adjon hibát
 
+            //Értékelés bekérése ha az adott elem true
             if (ValasztottOpciok[0] == true) 
             {
                 SzuresAdatok.Add(Ertekeles());
                 Console.Clear();
             }
 
+            //Típus bekérése ha az adott elem true
             if (ValasztottOpciok[1] == true)
             {
+                //Ha kell hossz-t is szűrni true-t adunk a függvénynek
                 if (ValasztottOpciok[3] == true)
                 {
                     string a = Tipus(true, BemenetiAdatok);
+                    //A visszakapott stringet felbontjuk és hozzáadjuk a listához
                     SzuresAdatok.Add(a.Split(';')[0]);
                     SzuresAdatok.Add(a.Split(';')[1]);
 
                     tipusMufaj = a.Split(';')[0].Substring(1);
                 }
+                
 
+                //Hossz nélkül ;-nélkül kapjuk vissza a stringet
                 else 
                 {
                     string a = Tipus(false, BemenetiAdatok);
@@ -217,12 +232,14 @@ namespace adatszures
                 Console.Clear();
             }
 
+            //Műfaj bekérése ha az adott elem true
             if (ValasztottOpciok[2] == true)
             {
                 SzuresAdatok.Add(Mufaj(tipusMufaj, SGenre, MGenre, DGenre, BemenetiAdatok));
                 Console.Clear();
             }
 
+            //Max sorok bekérése ha az adott elem true
             if (ValasztottOpciok[4] == true) 
             {
                 SzuresAdatok.Add(Darabszam());
@@ -234,12 +251,12 @@ namespace adatszures
             Console.ForegroundColor = ConsoleColor.White;
             Console.ReadKey();
 
+            //Lista visszaadása
             return SzuresAdatok;
         }
-
         static void Szures(List<string> SzurtAdatok, List<FilmAdatok> BemenetiAdatok) 
         {
-            //Szűrések létrehozása és beállítása
+            //Szűrések létrehozása és beállítása nullra (? = lehet null a változó)
             double? minErtekeles = null;
             string? tipus = null;
             string? mufaj = null;
@@ -277,7 +294,7 @@ namespace adatszures
                 }
             }
 
-            //Szürési szempontok kiírása
+            //Szürési szempontok kiírása ha az adott változó = null akkor az alapján nem szűrünk
             Console.WriteLine("Az adatok a következők alapján lettek szűrve: ");
 
             if (minErtekeles != null) 
@@ -358,6 +375,7 @@ namespace adatszures
                 }
             }
 
+            //Ha nem találtunk megfelelő adatot
             if (VegsoLista.Count == 0)
             {
                 Console.WriteLine($"\tNem található a szűrésnek megfelelő adat.");
@@ -365,8 +383,10 @@ namespace adatszures
 
             else 
             {
+                //Ha max sorok alapján is akarunk szűrni
                 if (maxSorok != null)
                 {
+                    //Ha a max sorok nem haladja meg a lista hosszát akkor max sorok mennyiségű sort írunk ki
                     if (maxSorok <= VegsoLista.Count())
                     {
                         for (int i = 0; i < maxSorok; i++)
@@ -375,6 +395,8 @@ namespace adatszures
                         }
                     }
 
+
+                    //Ha kevesebb adat van a listán mint a max sorok (pl. 3 elem a listán de a max sorok 5)
                     else
                     {
                         foreach (var V in VegsoLista)
@@ -384,6 +406,8 @@ namespace adatszures
                     }
                 }
 
+
+                //Alap helyzetben
                 else
                 {
                     foreach (var V in VegsoLista)
@@ -427,6 +451,7 @@ namespace adatszures
         }
         static string Tipus(bool kellHossz, List<FilmAdatok> BemenetiAdatok)
         {
+            //Típusok kilistázása (movie, series, documentary)
             List<string> Tipusok = new List<string>();
 
             foreach (var t in BemenetiAdatok) 
@@ -474,10 +499,12 @@ namespace adatszures
 
             string output = Tipusok[sorszam-1];
 
+
+            //Ha kell hossz meghívjuk a függvényt a bekért típussal együtt és azzal együtt adjuk vissza a stringet
             if (kellHossz)
             {
                 Console.Clear();
-                return "T" + output + ";H" + Hossz(output);
+                return "T" + output + ";H" + Hossz(output); //output = series/documentary/movie
             }
 
             else 
