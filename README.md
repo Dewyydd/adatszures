@@ -11,9 +11,9 @@ https://www.canva.com/design/DAG5lwARy-E/hKMFmg3elKjfkgH65CV4lQ/view?utm_content
 
 📁 Projekt felépítése:
 Adatszűrés/
-│
-├── program.cs        # A főprogram
-├── filmadatok.cs     # Class
-└── data.csv          # Adatokat tartalmazó fájl
+│  
+├── program.cs        # A főprogram  
+├── filmadatok.cs     # Class  
+└── data.csv          # Adatokat tartalmazó fájl  
 
 A program teljes mértékben a két csodálatos fejlesztő szellemi tulajdona, engedély nélküli felhasználása szigorúan tilos, mert per lesz barátocskám.
