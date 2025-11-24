@@ -439,7 +439,6 @@ namespace adatszures
                 }    
             }
         }
-
         static void FilebaIras(List<FilmAdatok> VegsoLista, int? maxSorok) 
         {
             Console.Clear();
@@ -476,7 +475,9 @@ namespace adatszures
             }
 
             kiiras.Close();
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"Adatok sikeresen kiírva a {fileNev.Trim()}.txt-be");
+            Console.ForegroundColor = ConsoleColor.White;
         }
         static string Ertekeles() 
         {
