@@ -415,9 +415,69 @@ namespace adatszures
                         Console.WriteLine($"\t{V.rating}\t| {V.name}");
                     }
                 }
+
+
+                bool joBill = false;
+                Console.WriteLine("\nKövetkező opciók érhetőek el: ");
+                Console.WriteLine("\t[ENTER] = Adatok fileba írása");
+                Console.WriteLine("\t[SPACE] = Kilépés");
+
+                while (joBill != true) 
+                {
+                    ConsoleKeyInfo keyInfo = Console.ReadKey();
+
+                    if (keyInfo.Key == ConsoleKey.Enter)
+                    {
+                        FilebaIras(VegsoLista, maxSorok);
+                        break;
+                    }
+
+                    else if (keyInfo.Key == ConsoleKey.Spacebar) 
+                    {
+                        break;
+                    }
+                }    
             }
         }
 
+        static void FilebaIras(List<FilmAdatok> VegsoLista, int? maxSorok) 
+        {
+            Console.Clear();
+            Console.Write("Add meg a file nevét: ");
+            string fileNev = Console.ReadLine();
+
+            StreamWriter kiiras = new StreamWriter(fileNev.Trim() + ".txt");
+
+            if (maxSorok != null)
+            {
+                if (maxSorok <= VegsoLista.Count())
+                {
+                    for (int i = 0; i < maxSorok; i++)
+                    {
+                        kiiras.WriteLine($"{VegsoLista[i].rating}\t| {VegsoLista[i].name}");
+                    }
+                }
+
+                else
+                {
+                    foreach (var V in VegsoLista)
+                    {
+                        kiiras.WriteLine($"{V.rating}\t| {V.name}");
+                    }
+                }
+            }
+
+            else
+            {
+                foreach (var V in VegsoLista)
+                {
+                    kiiras.WriteLine($"{V.rating}\t| {V.name}");
+                }
+            }
+
+            kiiras.Close();
+            Console.WriteLine($"Adatok sikeresen kiírva a {fileNev.Trim()}.txt-be");
+        }
         static string Ertekeles() 
         {
             bool helyes = false;
