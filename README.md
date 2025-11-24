@@ -10,7 +10,7 @@ Könnyen bővíthető új szűrési paraméterekkel.
 https://www.canva.com/design/DAG5lwARy-E/hKMFmg3elKjfkgH65CV4lQ/view?utm_content=DAG5lwARy-E&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hea2bc7a16b
 
 📁 Projekt felépítése:
-Adatszűrés/
+Adatszűrés/  
 │  
 ├── program.cs        # A főprogram  
 ├── filmadatok.cs     # Class  
